@@ -52,14 +52,12 @@ class DesktopIni():
             for i in self.data:
                 ini.write(i + '=' + str(self.data[i]) + '\n')
 
-def command_line(folder_color, info_tip=""):
-    this_folder = os.getcwd()
-    set_system_folder(this_folder)
-    desktop_ini = DesktopIni(folder_color, info_tip)
-    desktop_ini.create()
-
-def main():
-    fire.Fire(command_line)
 
 if __name__ == "__main__":
-    main()
+    def main(folder_color, info_tip=""):
+        this_folder = os.getcwd()
+        set_system_folder(this_folder)
+        desktop_ini = DesktopIni(folder_color, info_tip)
+        desktop_ini.create()
+
+    fire.Fire(main)

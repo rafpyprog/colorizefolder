@@ -1,0 +1,9 @@
+setup.py
+Colorize_Folder.egg-info/PKG-INFO
+Colorize_Folder.egg-info/SOURCES.txt
+Colorize_Folder.egg-info/dependency_links.txt
+Colorize_Folder.egg-info/entry_points.txt
+Colorize_Folder.egg-info/requires.txt
+Colorize_Folder.egg-info/top_level.txt
+colorizefolder/__init__.py
+colorizefolder/colorizefolder.py
