@@ -6,4 +6,5 @@ Colorize_Folder.egg-info/entry_points.txt
 Colorize_Folder.egg-info/requires.txt
 Colorize_Folder.egg-info/top_level.txt
 colorizefolder/__init__.py
+colorizefolder/cmdline.py
 colorizefolder/colorizefolder.py

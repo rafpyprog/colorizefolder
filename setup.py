@@ -21,14 +21,14 @@ setup(
       author_email='rafael.alves.ribeiro@gmail.com',
       license='MIT',
 
+      include_package_data=True,
       packages=find_packages(),
       package_data={'colorizefolder': ['icons/*.ico']},
 
       install_requires=['fire >= 0.1.1',],
-
       entry_points={
         'console_scripts': [
-            'colorizefolder=colorizefolder:main',
+            'colorizefolder = colorizefolder:colorizefolder.main',
         ],
       }
     )

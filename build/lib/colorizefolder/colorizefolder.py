@@ -19,8 +19,8 @@ class DesktopIni():
                         Deleting a System Folder while deleting/moving the
                         desktop.ini file.
 
-        folder_color – Set it to 'green', 'yellow' or 'red' to change the
-                       color of the folder's icon.
+        folder_color – Set it to 'blue', 'green', 'yellow' or 'red' to change
+                       the color of the folder's icon.
 
         IconIndex – If you’re setting a custom icon for the underlying folder,
                     you need to set this entry as well. Set it to 0 if there
@@ -32,13 +32,9 @@ class DesktopIni():
                   and then hover the cursor over the folder, the  text string
                   stored in the desktop.ini file is displayed there.
         '''
-        module = 'colorizefolder'
-        icon_file = {'green': resource_filename(module, 'icons/greem.ico'),
-                     'yellow': resource_filename(module, 'icons/yellow.ico'),
-                     'red': resource_filename(module, 'icons/red.ico')}
 
         self.data = {"ConfirmFileOp": confirm_file_op,
-                     "IconFile": icon_file[folder_color],
+                     "IconFile": self.get_icon(folder_color),
                      "IconIndex": icon_index,
                      "InfoTip": info_tip}
 
@@ -52,12 +48,19 @@ class DesktopIni():
             for i in self.data:
                 ini.write(i + '=' + str(self.data[i]) + '\n')
 
+    def get_icon(self, icon_name):
+        MODULE = 'colorizefolder'
+        icon_path = resource_filename(MODULE, 'icons/{}.ico'.format(icon_name))
+        return icon_path
+
+def command_line(folder_color, info_tip=""):
+    this_folder = os.getcwd()
+    set_system_folder(this_folder)
+    desktop_ini = DesktopIni(folder_color, info_tip)
+    desktop_ini.create()
+
+def main():
+    fire.Fire(command_line)
 
 if __name__ == "__main__":
-    def main(folder_color, info_tip=""):
-        this_folder = os.getcwd()
-        set_system_folder(this_folder)
-        desktop_ini = DesktopIni(folder_color, info_tip)
-        desktop_ini.create()
-
-    fire.Fire(main)
+    main()
