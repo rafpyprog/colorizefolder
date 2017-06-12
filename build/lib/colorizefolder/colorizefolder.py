@@ -11,7 +11,7 @@ def set_system_folder(folder_name):
     return p
 
 class DesktopIni():
-    def __init__(self, folder_color, info_tip="", icon_index=0,
+    def __init__(self, folder_color, icon_set="default", info_tip="", icon_index=0,
                  confirm_file_op=0):
         ''' Creates de desktop.ini file to customize the folder.
 
@@ -34,7 +34,7 @@ class DesktopIni():
         '''
 
         self.data = {"ConfirmFileOp": confirm_file_op,
-                     "IconFile": self.get_icon(folder_color),
+                     "IconFile": self.get_icon(icon_set, folder_color),
                      "IconIndex": icon_index,
                      "InfoTip": info_tip}
 
@@ -48,15 +48,17 @@ class DesktopIni():
             for i in self.data:
                 ini.write(i + '=' + str(self.data[i]) + '\n')
 
-    def get_icon(self, icon_name):
+    def get_icon(self, icon_set, color):
         MODULE = 'colorizefolder'
-        icon_path = resource_filename(MODULE, 'icons/{}.ico'.format(icon_name))
+        icon_file = 'icons/{}-{}.ico'.format(icon_set, color)
+        icon_path = resource_filename(MODULE, icon_file)
         return icon_path
 
-def command_line(folder_color, info_tip=""):
+
+def command_line(folder_color, icon_set="default", info_tip=""):
     this_folder = os.getcwd()
     set_system_folder(this_folder)
-    desktop_ini = DesktopIni(folder_color, info_tip)
+    desktop_ini = DesktopIni(folder_color, icon_set, info_tip)
     desktop_ini.create()
 
 def main():
